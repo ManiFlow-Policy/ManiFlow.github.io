@@ -20,7 +20,11 @@ document.addEventListener('DOMContentLoaded', function() {
             const visibleItems = getVisibleItems();
             const maxIndex = items.length - visibleItems;
             currentIndex = Math.max(0, Math.min(currentIndex, maxIndex));
-            const offset = currentIndex * -(items[0].offsetWidth + 20); // 20px is the gap
+            
+            // Calculate offset based on item width and gap
+            const itemWidth = items[0].offsetWidth;
+            const gap = 45; // Match the gap in CSS
+            const offset = currentIndex * -(itemWidth + gap);
             slider.style.transform = `translateX(${offset}px)`;
             
             // Update navigation buttons

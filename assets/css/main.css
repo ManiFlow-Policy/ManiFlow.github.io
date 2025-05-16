@@ -1713,7 +1713,7 @@ a:hover {
 .video-slider-container {
     position: relative;
     width: 100%;
-    max-width: 1200px;
+    max-width: 1800px;
     margin: 0 auto;
     overflow: hidden;
     padding: 0 40px;
@@ -1721,18 +1721,18 @@ a:hover {
 
 .video-slider {
     display: flex;
-    transition: transform 0.5s ease;
-    gap: 20px;
+    transition: transform 0.4s ease;
+    gap: 45px;
 }
 
 .video-slider .video-item {
-    flex: 0 0 calc(25% - 15px);
-    min-width: calc(25% - 15px);
+    flex: 0 0 calc(33.333% - 15px);
+    min-width: calc(33.333% - 15px);
     margin: 0;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 0.5vw;
     overflow: hidden;
-    transition: transform 0.3s ease;
+    transition: transform 0.2s ease;
 }
 
 .video-slider .video-item:hover {
@@ -1748,7 +1748,7 @@ a:hover {
     border-radius: 0.5vw;
     object-fit: cover;
     aspect-ratio: 16/9;
-    max-height: 200px;
+    max-height: 500px;
 }
 
 /* Responsive adjustments */
@@ -1772,3 +1772,4 @@ a:hover {
         min-width: calc(100% - 20px);
     }
 }
+
