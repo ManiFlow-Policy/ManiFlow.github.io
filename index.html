@@ -242,7 +242,7 @@
     <h1>Overview of ManiFlow</h1>
     <p>
         ManiFlow is a visual imitation learning algorithm for dexterous robotic manipulation using Flow Matching with a consistency training objective, enabling efficient learning of high-dimensional dexterous behavior. 
-        Our comprehensive evaluation spanning over 60 simulation tasks and eight real-world scenarios demonstrates ManiFlow’s effectiveness, 
+        Our comprehensive evaluation spanning over 60 simulation tasks and eight real-world scenarios demonstrates ManiFlow's effectiveness, 
         particularly in challenging real-world bimanual dexterous manipulation across three different robot platforms, including Franka, bimanual Ability hands and Unitree H1 humanoid robot with Inspire hands, 
         where it achieves a 98.3% improvement over existing approaches in real-world. 
         These results establish ManiFlow as a promising foundation for complex robotic manipulation tasks.
@@ -258,325 +258,184 @@
 
     <hr class="rounded">
 
-    
-    <!-- <h1>Whole-Upper-Body Teleoperation</h1>
-
+    <h1>Policy Generalization</h1>
     <p>
-        We use the <a href="https://github.com/Improbable-AI/VisionProTeleop">Apple Vision Pro (AVP)</a> to teleoperate the robot's upper body, which
-        provides precise tracking of the human hand, wrist, and head
-        poses. The robot uses Relaxed IK to follow these
-        poses accurately. We stream the robot's <a href="https://arxiv.org/abs/2407.01512">vision</a> back to
-        the AVP. Differing from other works, we enable the waist DoF and gain a more flexible workspace.
+        Our policy demonstrates strong generalization capabilities across different objects and scenes. Below we showcase examples of how our policy generalizes to novel objects and environments.
     </p>
-    <div class="video_container_wrapper1">
-        <div class="video_container">
-            <video loop autoplay muted playsinline preload="metadata">
-                <source src="videos/teleop.mp4" type="video/mp4">
-            </video>            
-        </div>
-    </div> -->
 
-
-    <!-- <hr class="rounded">
-
-    <h1>Improved 3D Diffusion Policies (iDP3)</h1>
-
-    <p>
-        <img src="videos/camera_frame.png" alt="camera" class="image-right" width="35%">
-        3D visuomotor policies are inherently dependent on precise camera calibration and fine-grained point cloud segmentation,
-        which limits their deployment on mobile platforms such as humanoid robots.
-        <br>
-        We introduce the <a href="https://humanoid-manipulation.github.io/">Improved 3D Diffusion Policy (iDP3)</a>, a novel 3D visuomotor policy that eliminates these constraints and thus enables its usage on general-purpose robots.
-        iDP3 leverages egocentric 3D visual representations, which lie in the camera frame, instead of the world frame as in the <a href="https://3d-diffusion-policy.github.io/">3D Diffusion Policy</a> and other 3D policies. 
-        <br>
-        Leveraging egocentric 3D visual
-    representations presents challenges in eliminating redundant
-    point clouds, such as backgrounds or tabletops, especially
-    without relying on foundation models. To mitigate this issue, we <i>scale up the vision input</i> to capture the entire scene.
-    </p> -->
-    
-    
-
-
-    <!-- <h2>Generalization Ability 1: View Generalization</h2>
-    <p>
-        Our egocentric 3D representations demonstrate impressive view invariance. 
-        As shown below, iDP3 consistently grasps objects even under large view changes, while <a href="https://diffusion-policy.cs.columbia.edu/">Diffusion Policy</a> (with finetuned R3M and data augmentation) struggles to grasp even the training objects.
-        Diffusion Policy shows occasional success only with minor view changes. Notably, unlike other works to achieve view generalization, we did not incorporate specific designs for equivariance or invariance. 
-    </p>
-    <div id="video_grid_view" style="padding-top: 1vw; padding-bottom: 2vw">
-        <div class="row_label_view">Diffusion Policy
-            <br>+Finetuned R3M
-            <br>+Augmentation</div>
-        <div class="video_wrapper videostyle_with_border">
-            <div class="video_container videostyle_with_border_failure">
-                <video autoplay muted playsinline loop playsinline>
-                    <source src="videos/view_invariant/dp.mp4" type="video/mp4">
-                </video>
-                <div class="overlay">DP cannot grasp under large view changes.</div>
-            </div>
-        </div>
-        <div class="row_label_view">iDP3</div>
-        <div class="video_wrapper videostyle_with_border">
-            <div class="video_container videostyle_with_border_success">
-                <video autoplay muted playsinline loop playsinline>
-                    <source src="videos/view_invariant/idp3.mp4" type="video/mp4">
-                </video>
-                <div class="overlay">iDP3 is robust to large view changes.</div>
-            </div>
-        </div>
-    </div> -->
-    <h2>Generalization Ability 2: Object Generalization</h2>
-    <p>
-        We evaluated several new objects. While Diffusion Policy, due to the use of Color Jitter augmentation, can occasionally handle some unseen objects, it does so with a very low success rate.
-        In contrast, iDP3 naturally handles a wide range of objects, thanks to its use of 3D representations.
-    </p>
-    
-    <div id="video_grid_gen" style="padding-top: 1vw; padding-bottom: 2vw">
-        <div class="row_label">Diffusion Policy<br>+Finetuned R3M<br>+Augmentation</div>
-        <!-- 1 -->
-        <div class="video_wrapper">
-            <div class="video_container videostyle_with_border_failure">
-                <video autoplay muted playsinline loop playsinline>
-                    <source src="videos/video_success_failure/grasp_origin_dp.mp4" type="video/mp4">
-                </video>
-                <div class="overlay">Training Scene<br>Training Object & New Object</div>
-            </div>
-        </div>
-        <!-- 3 -->
-        <div class="video_wrapper">
-            <div class="video_container videostyle_with_border_failure">
-                <video autoplay muted playsinline loop playsinline>
-                    <source src="videos/video_success_failure/pour_old_dp.mp4" type="video/mp4">
-                </video>
-                <div class="overlay">Training Scene<br>New Object</div>
-            </div>
-        </div>
-    
-
-        <div class="row_label">iDP3</div>
-        <!-- 5 -->
-        <div class="video_wrapper">
-            <div class="video_container videostyle_with_border_success">
-                <video autoplay muted playsinline loop playsinline>
-                    <source src="videos/video_success_failure/grasp_origin_idp3.mp4" type="video/mp4">
-                </video>
-                <div class="overlay">Training Scene<br>Training Object & New Object</div>
-            </div>
-        </div>
-        <!-- 7 -->
-        <div class="video_wrapper">
-            <div class="video_container videostyle_with_border_success">
-                <video autoplay muted playsinline loop playsinline>
-                    <source src="videos/video_success_failure/pour_old_idp3.mp4" type="video/mp4">
-                </video>
-                <div class="overlay">Training Scene<br>New Object</div>
-            </div>
-        </div>
-    </div>
-
-    <h2>Generalization Ability 3: Scene Generalization</h2>
-    <p>
-        We find that iDP3 generalizes to a wide range of real-world unseen environments, with robust and smooth behavior,
-        while Diffusion Policy presents very jittering behavior in the new scene, and even fails to grasp the training object.
-    </p>
-    
-    <div id="video_grid_gen" style="padding-top: 1vw; padding-bottom: 2vw">
-        <div class="row_label">Diffusion Policy<br>+Finetuned R3M<br>+Augmentation</div>
-         <!-- 2 -->
-        <div class="video_wrapper">
-            <div class="video_container videostyle_with_border_failure">
-                <video autoplay muted playsinline loop playsinline>
-                    <source src="videos/video_success_failure/grasp_new_dp.mp4" type="video/mp4">
-                </video>
-                <div class="overlay">New Scene<br>Training Object & New Object</div>
-            </div>
-        </div>
-        <!-- 4 -->
-        <div class="video_wrapper">
-            <div class="video_container videostyle_with_border_failure">
-                <video autoplay muted playsinline loop playsinline>
-                    <source src="videos/video_success_failure/pour_new_dp.mp4" type="video/mp4">
-                </video>
-                <div class="overlay">New Scene<br>New Object</div>
-            </div>
-        </div>
-        <div class="row_label">iDP3</div>
-        <!-- 6 -->
-        <div class="video_wrapper">
-            <div class="video_container videostyle_with_border_success">
-                <video autoplay muted playsinline loop playsinline>
-                    <source src="videos/video_success_failure/grasp_new_idp3.mp4" type="video/mp4">
-                </video>
-                <div class="overlay">New Scene<br>Training Object & New Object</div>
-            </div>
-        </div>
-        <!-- 8 -->
-        <div class="video_wrapper">
-            <div class="video_container videostyle_with_border_success">
-                <video autoplay muted playsinline loop playsinline>
-                    <source src="videos/video_success_failure/pour_new_idp3.mp4" type="video/mp4">
-                </video>
-                <div class="overlay">New Scene<br>New Object</div>
-            </div>
-        </div>
-    </div>
-
-    <h2>Visualizations of Egocentric 3D Visual Representations</h2>
-    <p>
-        We visualize our egocentric 3D representations, together with the corresponding images.
-        These videos also highlight the complexity of diverse real-world scenes.
+    <div class="policy-gen-section">
+        <h2>Generalization to Unseen Objects</h2>
         
-    </p>
-    
-    <div id="video_grid_ego" style="padding-top: 1vw; padding-bottom: 2vw">
-        <!-- 1 -->
-        <div class="video_wrapper">
-            <div class="video_container videostyle_with_border">
-                <video autoplay muted playsinline loop playsinline>
-                    <source src="videos/ego_view_vis/grasp1_cropped.mp4" type="video/mp4">
-                </video>
-                <div class="overlay">Pick & Place</div>
-            </div>
-        </div>
-        <!-- 2 -->
-        <div class="video_wrapper ">
-            <div class="video_container videostyle_with_border">
-                <video autoplay muted playsinline loop playsinline>
-                    <source src="videos/ego_view_vis/pour4_cropped.mp4" type="video/mp4">
-                </video>
-                <div class="overlay">Pour</div>
-            </div>
-        </div>
-        <!-- 3 -->
-        <div class="video_wrapper">
-            <div class="video_container videostyle_with_border">
-                <video autoplay muted playsinline loop playsinline>
-                    <source src="videos/ego_view_vis/wipe1_cropped.mp4" type="video/mp4">
-                </video>
-                <div class="overlay">Wipe</div>
-            </div>
-        </div>
-        <!-- 4 -->
-        <div class="video_wrapper">
-            <div class="video_container videostyle_with_border">
-                <video autoplay muted playsinline loop playsinline>
-                    <source src="videos/ego_view_vis/pour2_cropped.mp4" type="video/mp4">
-                </video>
-                <div class="overlay">Pour</div>
-            </div>
-        </div>
-        <!-- 5 -->
-        <div class="video_wrapper ">
-            <div class="video_container videostyle_with_border">
-                <video autoplay muted playsinline loop playsinline>
-                    <source src="videos/ego_view_vis/pour3_cropped.mp4" type="video/mp4">
-                </video>
-                <div class="overlay">Pour</div>
-            </div>
-        </div>
-        <!-- 6 -->
-        <div class="video_wrapper">
-            <div class="video_container videostyle_with_border ">
-                <video autoplay muted playsinline loop playsinline>
-                    <source src="videos/ego_view_vis/wipe4_cropped.mp4" type="video/mp4">
-                </video>
-                <div class="overlay">Wipe</div>
-            </div>
-        </div>
-        <!-- 7 -->
-        <div class="video_wrapper ">
-            <div class="video_container videostyle_with_border">
-                <video autoplay muted playsinline loop playsinline>
-                    <source src="videos/ego_view_vis/pour1_cropped.mp4" type="video/mp4">
-                </video>
-                <div class="overlay">Pour</div>
-            </div>
-        </div>
-        <!-- 8 -->
-        <div class="video_wrapper">
-            <div class="video_container videostyle_with_border">
-                <video autoplay muted playsinline loop playsinline>
-                    <source src="videos/ego_view_vis/wipe3_cropped.mp4" type="video/mp4">
-                </video>
-                <div class="overlay">Wipe</div>
+        <!-- Pouring Task -->
+        <div class="task-row">
+            <div class="task-label">Pouring Task</div>
+            <div class="video-slider-container">
+                <div class="slider-nav left">
+                    <i class="fa fa-chevron-left"></i>
+                </div>
+                <div class="video-slider">
+                    <div class="video-item">
+                        <video autoplay muted playsinline loop>
+                            <source src="videos/teaser/h1_pouring_1.mp4" type="video/mp4">
+                        </video>
+                        <div class="overlay">Pouring Task 1</div>
+                    </div>
+                    <div class="video-item">
+                        <video autoplay muted playsinline loop>
+                            <source src="videos/teaser/h1_pouring_2.mp4" type="video/mp4">
+                        </video>
+                        <div class="overlay">Pouring Task 2</div>
+                    </div>
+                    <div class="video-item">
+                        <video autoplay muted playsinline loop>
+                            <source src="videos/teaser/h1_pouring_3.mp4" type="video/mp4">
+                        </video>
+                        <div class="overlay">Pouring Task 3</div>
+                    </div>
+                    <div class="video-item">
+                        <video autoplay muted playsinline loop>
+                            <source src="videos/teaser/h1_pouring_4.mp4" type="video/mp4">
+                        </video>
+                        <div class="overlay">Pouring Task 4</div>
+                    </div>
+                    <div class="video-item">
+                        <video autoplay muted playsinline loop>
+                            <source src="videos/teaser/h1_pouring_5.mp4" type="video/mp4">
+                        </video>
+                        <div class="overlay">Pouring Task 5</div>
+                    </div>
+                </div>
+                <div class="slider-nav right">
+                    <i class="fa fa-chevron-right"></i>
+                </div>
             </div>
         </div>
 
-        <!-- 9 -->
-        <div class="video_wrapper">
-            <div class="video_container videostyle_with_border">
-                <video autoplay muted playsinline loop playsinline>
-                    <source src="videos/ego_view_vis/grasp0_cropped.mp4" type="video/mp4">
-                </video>
-                <div class="overlay">Pick & Place</div>
+        <!-- Grasping Task -->
+        <div class="task-row">
+            <div class="task-label">Grasping Task</div>
+            <div class="video-slider-container">
+                <div class="slider-nav left">
+                    <i class="fa fa-chevron-left"></i>
+                </div>
+                <div class="video-slider">
+                    <div class="video-item">
+                        <video autoplay muted playsinline loop>
+                            <source src="videos/teaser/h1_grsaping_1.mp4" type="video/mp4">
+                        </video>
+                        <div class="overlay">Grasping Task 1</div>
+                    </div>
+                    <div class="video-item">
+                        <video autoplay muted playsinline loop>
+                            <source src="videos/teaser/h1_grsaping_2.mp4" type="video/mp4">
+                        </video>
+                        <div class="overlay">Grasping Task 2</div>
+                    </div>
+                    <div class="video-item">
+                        <video autoplay muted playsinline loop>
+                            <source src="videos/teaser/h1_grsaping_3.mp4" type="video/mp4">
+                        </video>
+                        <div class="overlay">Grasping Task 3</div>
+                    </div>
+                    <div class="video-item">
+                        <video autoplay muted playsinline loop>
+                            <source src="videos/teaser/h1_grsaping_4.mp4" type="video/mp4">
+                        </video>
+                        <div class="overlay">Grasping Task 4</div>
+                    </div>
+                    <div class="video-item">
+                        <video autoplay muted playsinline loop>
+                            <source src="videos/teaser/h1_grsaping_5.mp4" type="video/mp4">
+                        </video>
+                        <div class="overlay">Grasping Task 5</div>
+                    </div>
+                </div>
+                <div class="slider-nav right">
+                    <i class="fa fa-chevron-right"></i>
+                </div>
             </div>
         </div>
-        <!-- 10 -->
-        <div class="video_wrapper">
-            <div class="video_container videostyle_with_border">
-                <video autoplay muted playsinline loop playsinline>
-                    <source src="videos/ego_view_vis/grasp2_cropped.mp4" type="video/mp4">
-                </video>
-                <div class="overlay">Pick & Place</div>
+
+        <h2>Generalization to Unseen Scenes</h2>
+        
+        <!-- Pouring in New Scenes -->
+        <div class="task-row">
+            <div class="task-label">Pouring in New Scenes</div>
+            <div class="video-slider-container">
+                <div class="slider-nav left">
+                    <i class="fa fa-chevron-left"></i>
+                </div>
+                <div class="video-slider">
+                    <div class="video-item">
+                        <video autoplay muted playsinline loop>
+                            <source src="videos/teaser/bunny_pouring_1.mp4" type="video/mp4">
+                        </video>
+                        <div class="overlay">Scene 1</div>
+                    </div>
+                    <div class="video-item">
+                        <video autoplay muted playsinline loop>
+                            <source src="videos/teaser/bunny_pouring_2.mp4" type="video/mp4">
+                        </video>
+                        <div class="overlay">Scene 2</div>
+                    </div>
+                    <div class="video-item">
+                        <video autoplay muted playsinline loop>
+                            <source src="videos/teaser/bunny_pouring_3.mp4" type="video/mp4">
+                        </video>
+                        <div class="overlay">Scene 3</div>
+                    </div>
+                    <div class="video-item">
+                        <video autoplay muted playsinline loop>
+                            <source src="videos/teaser/bunny_pouring_4.mp4" type="video/mp4">
+                        </video>
+                        <div class="overlay">Scene 4</div>
+                    </div>
+                </div>
+                <div class="slider-nav right">
+                    <i class="fa fa-chevron-right"></i>
+                </div>
             </div>
         </div>
-        <!-- 11 -->
-        <div class="video_wrapper">
-            <div class="video_container videostyle_with_border">
-                <video autoplay muted playsinline loop playsinline>
-                    <source src="videos/ego_view_vis/grasp3_cropped.mp4" type="video/mp4">
-                </video>
-                <div class="overlay">Pick & Place</div>
-            </div>
-        </div>
-        <!-- 12 -->
-        <div class="video_wrapper">
-            <div class="video_container videostyle_with_border">
-                <video autoplay muted playsinline loop playsinline>
-                    <source src="videos/ego_view_vis/grasp4_cropped.mp4" type="video/mp4">
-                </video>
-                <div class="overlay">Pick & Place</div>
-            </div>
-        </div>
-        <!-- 13 -->
-        <div class="video_wrapper">
-            <div class="video_container videostyle_with_border">
-                <video autoplay muted playsinline loop playsinline>
-                    <source src="videos/ego_view_vis/pour0_cropped.mp4" type="video/mp4">
-                </video>
-                <div class="overlay">Pour</div>
-            </div>
-        </div>
-        <!-- 14 -->
-        <div class="video_wrapper">
-            <div class="video_container videostyle_with_border">
-                <video autoplay muted playsinline loop playsinline>
-                    <source src="videos/ego_view_vis/wipe0_cropped.mp4" type="video/mp4">
-                </video>
-                <div class="overlay">Wipe</div>
-            </div>
-        </div>
-        <!-- 15 -->
-        <div class="video_wrapper">
-            <div class="video_container videostyle_with_border">
-                <video autoplay muted playsinline loop playsinline>
-                    <source src="videos/ego_view_vis/wipe2_cropped.mp4" type="video/mp4">
-                </video>
-                <div class="overlay">Wipe</div>
-            </div>
-        </div>
-        <!-- 6 -->
-        <div class="video_wrapper">
-            <div class="video_container videostyle_with_border ">
-                <video autoplay muted playsinline loop playsinline>
-                    <source src="videos/ego_view_vis/wipe4_cropped.mp4" type="video/mp4">
-                </video>
-                <div class="overlay">Wipe</div>
+
+        <!-- Grasping in New Scenes -->
+        <div class="task-row">
+            <div class="task-label">Grasping in New Scenes</div>
+            <div class="video-slider-container">
+                <div class="slider-nav left">
+                    <i class="fa fa-chevron-left"></i>
+                </div>
+                <div class="video-slider">
+                    <div class="video-item">
+                        <video autoplay muted playsinline loop>
+                            <source src="videos/teaser/bunny_grasp_1.mp4" type="video/mp4">
+                        </video>
+                        <div class="overlay">Scene 1</div>
+                    </div>
+                    <div class="video-item">
+                        <video autoplay muted playsinline loop>
+                            <source src="videos/teaser/bunny_grasp_2.mp4" type="video/mp4">
+                        </video>
+                        <div class="overlay">Scene 2</div>
+                    </div>
+                    <div class="video-item">
+                        <video autoplay muted playsinline loop>
+                            <source src="videos/teaser/bunny_grasp_3.mp4" type="video/mp4">
+                        </video>
+                        <div class="overlay">Scene 3</div>
+                    </div>
+                    <div class="video-item">
+                        <video autoplay muted playsinline loop>
+                            <source src="videos/teaser/bunny_grasp_4.mp4" type="video/mp4">
+                        </video>
+                        <div class="overlay">Scene 4</div>
+                    </div>
+                </div>
+                <div class="slider-nav right">
+                    <i class="fa fa-chevron-right"></i>
+                </div>
             </div>
         </div>
     </div>
-
 
     <hr class="rounded">
 
@@ -609,7 +468,5 @@
     <br>
 </div>
 </body>
-
-<!-- <script src="assets/js/full_screen_video.js"></script> -->
-<!-- <script src="assets/js/carousel.js"></script> -->
+<script src="assets/js/slider.js"></script>
 </html>
