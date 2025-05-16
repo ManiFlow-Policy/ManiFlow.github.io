@@ -1682,7 +1682,14 @@ a:hover {
     justify-content: center;
     cursor: pointer;
     z-index: 2;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.video-slider-container:hover .slider-nav {
+    opacity: 1;
+    visibility: visible;
 }
 
 .slider-nav:hover {
@@ -1691,15 +1698,15 @@ a:hover {
 
 .slider-nav i {
     color: white;
-    font-size: 1.2vw;
+    font-size: 20px;
 }
 
 .slider-nav.left {
-    left: -20px;
+    left: 0;
 }
 
 .slider-nav.right {
-    right: -20px;
+    right: 0;
 }
 
 /* Video Slider Styles */
