@@ -54,6 +54,7 @@
             <a href="#related">Related</a> -->
             <a href="#conclusions">Conclusions</a>
             <a href="#limitations">Limitations</a>
+            <a href="#hardware">Hardware</a>
         </div>
     </div>
 
@@ -482,7 +483,8 @@
     <h1 id="conclusions">Conclusions</h1>
 
     <p>
-        This work presents a real-world imitation learning system that enables a full-sized humanoid robot to generalize practical manipulation skills to diverse real-world environments, trained with data collected solely in one single scene. With more than 2000 rigorous evaluation trials, we present an improved 3D Diffusion Policy, that can learn robustly from human data and perform effectively on our humanoid robot. The results that our humanoid robot can perform autonomous manipulation skills in diverse real-world scenes show the potential of using 3D visuomotor policies in real-world manipulation tasks with data efficiency. 
+        <!-- This work presents a real-world imitation learning system that enables a full-sized humanoid robot to generalize practical manipulation skills to diverse real-world environments, trained with data collected solely in one single scene. With more than 2000 rigorous evaluation trials, we present an improved 3D Diffusion Policy, that can learn robustly from human data and perform effectively on our humanoid robot. The results that our humanoid robot can perform autonomous manipulation skills in diverse real-world scenes show the potential of using 3D visuomotor policies in real-world manipulation tasks with data efficiency.  -->
+        In this work, we introduce ManiFlow, a robust and efficient dexterous manipulation model.  ManiFlow improves upon prior flow matching policies by introducing a continuous-time consistency training objective, a superior time sampling strategy, and a novel DiT-X block.  The proposed DiT-X architecture effectively handles diverse input modalities through its dual conditioning mechanisms, enabling strong performance across varied manipulation tasks. Our comprehensive evaluation spanning 60 simulation tasks and 8 real-world scenarios demonstrates ManiFlow's effectiveness, particularly in challenging real-world bimanual dexterous manipulation, where it achieves a 98.3\% relative improvement over existing approaches. 
     </p>
 
     <h1 id="limitations">Limitations </h1>
@@ -493,6 +495,18 @@
         <br>(3) Collecting fine-grained manipulation skills, such as turning a screw, is time-consuming due to teleoperation with AVP; systems like Aloha~\cite{zhao2023aloha} are easier to collect dexterous manipulation tasks at this stage.
         <br>(4) We avoided using the robot's lower body, as maintaining balance is still challenging due to the hardware constraints brought by current humanoid robots.
         <br>In general, scaling up high-quality manipulation data is the main bottleneck. In the future, we hope to explore how to scale up the training of 3D visuomotor policies with more high-quality data and how to employ our 3D visuomotor policy learning pipeline to humanoid robots with whole-body control.
+    </p>
+
+    <h1 id="hardware">Hardware </h1>
+
+    <p>
+        Here are the hardware components used in this work:
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
     </p>
 
 
